@@ -41,4 +41,3 @@ end_date = get_date()
 url = f'https://api.govinfo.gov/published/{start_date}{end_date}?offset=0&pageSize=10&collection={collection}&api_key={api_key} '
 billz = requests.get()
 print(billz.text)
-
