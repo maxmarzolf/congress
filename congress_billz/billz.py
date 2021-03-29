@@ -10,8 +10,8 @@ valid_collections = ['USCOURTS', 'BILLS', 'CHRG', 'FR', 'GAOREPORTS', 'GOVPUB', 
                      'STATUTE', 'HOB', 'ERP', 'GOVMAN', 'CDIR', 'HMAN', 'HJOURNAL', 'SMAN']
 
 
-def get_date():
-    date = input('Enter date in YYYY-MM-DD format: ')
+def get_date(date_type):
+    date = input(f'Enter {date_type} date in YYYY-MM-DD format: ')
     validate_date(date)
     return date
 
@@ -40,8 +40,8 @@ def validate_collection(user_collection):
 
 
 collection = get_collection()
-start_date = get_date()
-end_date = get_date()
-url = f'https://api.govinfo.gov/published/{start_date}{end_date}?offset=0&pageSize=10&collection={collection}&api_key={api_key} '
+start_date = get_date('start')
+end_date = get_date('end')
+url = f'https://api.govinfo.gov/published/{start_date}/{end_date}?offset=0&pageSize=10&collection={collection}&api_key={api_key} '
 billz = requests.get(url)
 print(billz.text)
